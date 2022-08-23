@@ -19,9 +19,29 @@ function getComputerChoice() {
   return choice;
 }
 
-//Plays one round of RPS
+//Plays one round of RPS and returns winner as a string ("player" or "computer")
 function oneRound(playerSelection, computerSelection) {
   const pChoice = playerSelection.toLowerCase();
   const cChoice = computerSelection.toLowerCase();
-  console.log(pChoice, cChoice);
+  let winner = "";
+
+  if (pChoice === cChoice) {
+    console.log(`Even round! Both players choose ${pChoice}`);
+  } else if (pChoice === "rock" && cChoice === "scissors") {
+    console.log(`You win! ${pChoice} beats ${cChoice}`);
+    winner = "player";
+  } else if (pChoice === "paper" && cChoice === "rock") {
+    console.log(`You win! ${pChoice} beats ${cChoice}`);
+    winner = "player";
+  } else if (pChoice === "scissors" && cChoice === "paper") {
+    winner = "player";
+    console.log(`You win! ${pChoice} beats ${cChoice}`);
+  } else {
+    winner = "computer";
+    console.log(`You lose! ${cChoice} beats ${pChoice}`);
+  }
+  return winner;
 }
+
+const playerChoice = "rock";
+console.log(oneRound(playerChoice, getComputerChoice()));
