@@ -19,29 +19,56 @@ function getComputerChoice() {
   return choice;
 }
 
+function getPlayerChoice() {
+  let input = prompt("Type rock, paper or scissors");
+  return input;
+}
+
 //Plays one round of RPS and returns winner as a string ("player" or "computer")
-function oneRound(playerSelection, computerSelection) {
-  const pChoice = playerSelection.toLowerCase();
-  const cChoice = computerSelection.toLowerCase();
+function oneRound() {
+  const pChoice = getPlayerChoice().toLowerCase();
+  const cChoice = getComputerChoice().toLowerCase();
   let winner = "";
 
   if (pChoice === cChoice) {
-    console.log(`Even round! Both players choose ${pChoice}`);
+    console.log(`Even round! Both players choose ${pChoice}!`);
   } else if (pChoice === "rock" && cChoice === "scissors") {
-    console.log(`You win! ${pChoice} beats ${cChoice}`);
+    console.log(`You win! ${pChoice} beats ${cChoice}!`);
     winner = "player";
   } else if (pChoice === "paper" && cChoice === "rock") {
-    console.log(`You win! ${pChoice} beats ${cChoice}`);
+    console.log(`You win! ${pChoice} beats ${cChoice}!`);
     winner = "player";
   } else if (pChoice === "scissors" && cChoice === "paper") {
     winner = "player";
-    console.log(`You win! ${pChoice} beats ${cChoice}`);
+    console.log(`You win! ${pChoice} beats ${cChoice}!`);
   } else {
     winner = "computer";
-    console.log(`You lose! ${cChoice} beats ${pChoice}`);
+    console.log(`You lose! ${cChoice} beats ${pChoice}!`);
   }
   return winner;
 }
 
-const playerChoice = "rock";
-console.log(oneRound(playerChoice, getComputerChoice()));
+//Plays five rounds of RPS and logs the winner
+function game() {
+  let playerPoints = 0;
+  let computerPoints = 0;
+  let winner = "";
+  for (let i = 0; i < 5; i++) {
+    winner = oneRound();
+    if (winner === "player") {
+      playerPoints++;
+    } else if (winner === "computer") {
+      computerPoints++;
+    }
+  }
+
+  if (playerPoints > computerPoints) {
+    console.log(`Player won with ${playerPoints} points!`);
+  } else if (playerPoints < computerPoints) {
+    console.log(`Computer won with ${computerPoints} points!`);
+  } else if (playerPoints === computerPoints) {
+    console.log("It's a tie!");
+  }
+}
+
+game();
