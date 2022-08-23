@@ -18,3 +18,10 @@ function getComputerChoice() {
   }
   return choice;
 }
+
+//Plays one round of RPS
+function oneRound(playerSelection, computerSelection) {
+  const pChoice = playerSelection.toLowerCase();
+  const cChoice = computerSelection.toLowerCase();
+  console.log(pChoice, cChoice);
+}
